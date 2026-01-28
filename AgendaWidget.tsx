@@ -1,7 +1,7 @@
 import React from 'react';
 import { Calendar, ArrowRight } from 'lucide-react';
 import Card from './Card';
-import { AGENDA_DATA } from '../data';
+import { AGENDA_DATA } from './data';
 
 const AgendaWidget = () => {
   return (

@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { Page } from '../types';
+import { useAuth } from './AuthContext';
+import { Page } from './types';
 import { GraduationCap, User, Lock, ArrowRight, ArrowLeft, Quote } from 'lucide-react';
 
 interface LoginPageProps {
@@ -39,9 +39,9 @@ const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
       <div className="hidden lg:flex lg:w-1/2 relative flex-col justify-center items-center text-white overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=1920" 
-            alt="School Background" 
+          <img
+            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=1920"
+            alt="School Background"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-school-primary/90 to-red-900/90 mix-blend-multiply"></div>
@@ -51,11 +51,11 @@ const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
         {/* Content */}
         <div className="relative z-10 px-16 text-center max-w-2xl">
           <div className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center mx-auto mb-8 border border-white/20 shadow-xl">
-             <GraduationCap size={48} className="text-white" />
+            <GraduationCap size={48} className="text-white" />
           </div>
-          
+
           <h2 className="text-4xl font-bold mb-6 tracking-tight">Sistem Informasi Akademik</h2>
-          
+
           <div className="relative">
             <Quote className="absolute -top-4 -left-4 text-white/20 transform scale-x-[-1]" size={40} />
             <p className="text-xl font-light italic leading-relaxed text-white/90">
@@ -63,11 +63,11 @@ const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
             </p>
             <div className="mt-4 font-bold text-school-accent">— Nelson Mandela</div>
           </div>
-          
+
           <div className="mt-12 flex justify-center gap-2">
-             <div className="w-2 h-2 rounded-full bg-white"></div>
-             <div className="w-2 h-2 rounded-full bg-white/40"></div>
-             <div className="w-2 h-2 rounded-full bg-white/40"></div>
+            <div className="w-2 h-2 rounded-full bg-white"></div>
+            <div className="w-2 h-2 rounded-full bg-white/40"></div>
+            <div className="w-2 h-2 rounded-full bg-white/40"></div>
           </div>
         </div>
 
@@ -78,8 +78,8 @@ const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
 
       {/* Right Side - Login Form (With Gray Background and White Card) */}
       <div className="flex-1 flex flex-col justify-center items-center p-8 bg-gray-50 relative">
-        <button 
-          onClick={() => onNavigate('home')} 
+        <button
+          onClick={() => onNavigate('home')}
           className="absolute top-8 right-8 flex items-center gap-2 text-gray-500 hover:text-school-primary transition font-medium text-sm"
         >
           <ArrowLeft size={16} /> Kembali ke Beranda
@@ -107,7 +107,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
                 </div>
               </div>
             )}
-            
+
             <div className="space-y-5">
               <div>
                 <label htmlFor="username" className="block text-sm font-semibold text-gray-700 mb-1">
@@ -132,10 +132,10 @@ const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
 
               <div>
                 <div className="flex justify-between items-center mb-1">
-                   <label htmlFor="password" className="block text-sm font-semibold text-gray-700">
+                  <label htmlFor="password" className="block text-sm font-semibold text-gray-700">
                     Password
-                   </label>
-                   <a href="#" className="text-xs text-school-primary hover:text-red-700 font-medium">Lupa password?</a>
+                  </label>
+                  <a href="#" className="text-xs text-school-primary hover:text-red-700 font-medium">Lupa password?</a>
                 </div>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -164,27 +164,27 @@ const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
               </span>
               MASUK SISTEM
             </button>
-            
+
             <div className="mt-6 pt-6 border-t border-gray-100">
-               <p className="text-center text-xs text-gray-400 uppercase tracking-wide mb-3">Akun Demo</p>
-               <div className="grid grid-cols-3 gap-2 text-xs text-center">
-                  <div className="bg-gray-100 p-2 rounded cursor-pointer hover:bg-gray-200" onClick={() => {setUsername('admin'); setPassword('admin')}}>
-                    <span className="font-bold block text-gray-700">Admin</span>
-                    <span className="text-gray-500">admin/admin</span>
-                  </div>
-                  <div className="bg-gray-100 p-2 rounded cursor-pointer hover:bg-gray-200" onClick={() => {setUsername('guru'); setPassword('guru')}}>
-                    <span className="font-bold block text-gray-700">Guru</span>
-                    <span className="text-gray-500">guru/guru</span>
-                  </div>
-                  <div className="bg-gray-100 p-2 rounded cursor-pointer hover:bg-gray-200" onClick={() => {setUsername('siswa'); setPassword('siswa')}}>
-                    <span className="font-bold block text-gray-700">Siswa</span>
-                    <span className="text-gray-500">siswa/siswa</span>
-                  </div>
-               </div>
+              <p className="text-center text-xs text-gray-400 uppercase tracking-wide mb-3">Akun Demo</p>
+              <div className="grid grid-cols-3 gap-2 text-xs text-center">
+                <div className="bg-gray-100 p-2 rounded cursor-pointer hover:bg-gray-200" onClick={() => { setUsername('admin'); setPassword('admin') }}>
+                  <span className="font-bold block text-gray-700">Admin</span>
+                  <span className="text-gray-500">admin/admin</span>
+                </div>
+                <div className="bg-gray-100 p-2 rounded cursor-pointer hover:bg-gray-200" onClick={() => { setUsername('guru'); setPassword('guru') }}>
+                  <span className="font-bold block text-gray-700">Guru</span>
+                  <span className="text-gray-500">guru/guru</span>
+                </div>
+                <div className="bg-gray-100 p-2 rounded cursor-pointer hover:bg-gray-200" onClick={() => { setUsername('siswa'); setPassword('siswa') }}>
+                  <span className="font-bold block text-gray-700">Siswa</span>
+                  <span className="text-gray-500">siswa/siswa</span>
+                </div>
+              </div>
             </div>
           </form>
         </div>
-        
+
         {/* Mobile Footer */}
         <div className="mt-8 lg:hidden text-center text-xs text-gray-400">
           &copy; 2026 SMA BPS&K 1 Jakarta

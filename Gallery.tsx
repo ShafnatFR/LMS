@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Upload, Play, Calendar, X, ChevronLeft, ChevronRight, Pause, Volume2 } from 'lucide-react';
-import PageHeader from '../components/PageHeader';
-import Card from '../components/Card';
-import { MediaItem } from '../types';
-import { GALLERY_DATA } from '../data';
-import { useAuth } from '../contexts/AuthContext';
+import PageHeader from './PageHeader';
+import Card from './Card';
+import { MediaItem } from './types';
+import { GALLERY_DATA } from './data';
+import { useAuth } from './AuthContext';
 
 // Custom Video Player Component (unchanged logic, kept for brevity)
 const CustomVideoPlayer = ({ src, poster }: { src: string; poster?: string }) => {
@@ -52,7 +52,7 @@ const CustomVideoPlayer = ({ src, poster }: { src: string; poster?: string }) =>
   };
 
   return (
-    <div 
+    <div
       className="relative w-full h-full group bg-black rounded-lg overflow-hidden flex items-center justify-center"
       onClick={togglePlay}
     >
@@ -76,7 +76,7 @@ const CustomVideoPlayer = ({ src, poster }: { src: string; poster?: string }) =>
       )}
 
       {/* Custom Controls (Visible on Hover) */}
-      <div 
+      <div
         className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col gap-2"
         onClick={(e) => e.stopPropagation()}
       >
@@ -95,7 +95,7 @@ const CustomVideoPlayer = ({ src, poster }: { src: string; poster?: string }) =>
             <button onClick={togglePlay} className="hover:text-school-primary transition">
               {isPlaying ? <Pause size={20} fill="currentColor" /> : <Play size={20} fill="currentColor" />}
             </button>
-            
+
             <div className="flex items-center gap-2 group/vol">
               <Volume2 size={20} />
               <input
@@ -130,15 +130,15 @@ const GalleryPage = () => {
         id: Date.now(),
         type,
         src: URL.createObjectURL(file),
-        title: file.name.split('.')[0], 
+        title: file.name.split('.')[0],
         date: new Date().toISOString().split('T')[0]
       };
       setMediaItems([newItem, ...mediaItems]);
     }
   };
 
-  const filteredItems = filter === 'all' 
-    ? mediaItems 
+  const filteredItems = filter === 'all'
+    ? mediaItems
     : mediaItems.filter(item => item.type === filter);
 
   const openModal = (item: MediaItem) => {
@@ -177,8 +177,8 @@ const GalleryPage = () => {
 
   return (
     <div className="animate-fade-in pb-20">
-      <PageHeader 
-        title="Galeri Sekolah" 
+      <PageHeader
+        title="Galeri Sekolah"
         subtitle="Momen-momen berharga dan dokumentasi kegiatan civitas akademika SMA BPS&K 1 Jakarta."
       />
 
@@ -190,11 +190,10 @@ const GalleryPage = () => {
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className={`px-6 py-2 rounded-md text-sm font-medium transition-all capitalize ${
-                  filter === f 
-                    ? 'bg-school-primary text-white shadow-md' 
+                className={`px-6 py-2 rounded-md text-sm font-medium transition-all capitalize ${filter === f
+                    ? 'bg-school-primary text-white shadow-md'
                     : 'text-gray-500 hover:text-school-primary hover:bg-gray-50'
-                }`}
+                  }`}
               >
                 {f === 'all' ? 'Semua' : f === 'photo' ? 'Foto' : 'Video'}
               </button>
@@ -217,36 +216,36 @@ const GalleryPage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {filteredItems.map((item) => (
             <Card key={item.id} className="group border-0 shadow-md cursor-pointer hover:ring-2 hover:ring-school-primary transition-all">
-              <div 
+              <div
                 className="aspect-w-16 aspect-h-12 bg-gray-200 relative overflow-hidden h-64"
                 onClick={() => openModal(item)}
               >
                 {item.type === 'video' ? (
-                   <div className="w-full h-full flex items-center justify-center bg-gray-900 relative">
-                      {/* Lazy loaded video preview/thumbnail */}
-                      <video 
-                        src={item.src} 
-                        className="w-full h-full object-cover opacity-60" 
-                        preload="metadata"
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/40 group-hover:scale-110 transition-transform">
-                          <Play fill="white" className="text-white ml-1" size={20} />
-                        </div>
+                  <div className="w-full h-full flex items-center justify-center bg-gray-900 relative">
+                    {/* Lazy loaded video preview/thumbnail */}
+                    <video
+                      src={item.src}
+                      className="w-full h-full object-cover opacity-60"
+                      preload="metadata"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/40 group-hover:scale-110 transition-transform">
+                        <Play fill="white" className="text-white ml-1" size={20} />
                       </div>
-                   </div>
+                    </div>
+                  </div>
                 ) : (
-                  <img 
-                    src={item.src} 
-                    alt={item.title} 
-                    loading="lazy" 
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700" 
+                  <img
+                    src={item.src}
+                    alt={item.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700"
                   />
                 )}
-                
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
                   <span className="text-white font-bold text-lg leading-tight">{item.title}</span>
-                  <span className="text-gray-300 text-sm mt-1 flex items-center gap-1"><Calendar size={12}/> {item.date}</span>
+                  <span className="text-gray-300 text-sm mt-1 flex items-center gap-1"><Calendar size={12} /> {item.date}</span>
                 </div>
               </div>
             </Card>
@@ -258,7 +257,7 @@ const GalleryPage = () => {
       {selectedIndex !== null && filteredItems[selectedIndex] && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4 md:p-8 animate-fade-in">
           {/* Close Button */}
-          <button 
+          <button
             onClick={closeModal}
             className="absolute top-4 right-4 z-[110] text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full p-2 transition-colors"
           >
@@ -266,14 +265,14 @@ const GalleryPage = () => {
           </button>
 
           {/* Navigation Arrows */}
-          <button 
+          <button
             onClick={handlePrev}
             className="absolute left-4 top-1/2 -translate-y-1/2 z-[110] text-white/70 hover:text-white bg-black/50 hover:bg-black/80 rounded-full p-3 transition-all hidden md:block"
           >
             <ChevronLeft size={32} />
           </button>
-          
-          <button 
+
+          <button
             onClick={handleNext}
             className="absolute right-4 top-1/2 -translate-y-1/2 z-[110] text-white/70 hover:text-white bg-black/50 hover:bg-black/80 rounded-full p-3 transition-all hidden md:block"
           >
@@ -283,26 +282,26 @@ const GalleryPage = () => {
           {/* Modal Content */}
           <div className="w-full max-w-5xl flex flex-col items-center justify-center h-full">
             <div className="relative w-full flex-grow flex items-center justify-center overflow-hidden rounded-lg mb-4">
-               {filteredItems[selectedIndex].type === 'video' ? (
-                 <div className="w-full h-full max-h-[80vh] aspect-video">
-                    {/* Custom Video Player in Modal */}
-                    <CustomVideoPlayer src={filteredItems[selectedIndex].src} />
-                 </div>
-               ) : (
-                 <img 
-                   src={filteredItems[selectedIndex].src} 
-                   alt={filteredItems[selectedIndex].title}
-                   className="max-w-full max-h-[80vh] object-contain shadow-2xl rounded-sm"
-                 />
-               )}
+              {filteredItems[selectedIndex].type === 'video' ? (
+                <div className="w-full h-full max-h-[80vh] aspect-video">
+                  {/* Custom Video Player in Modal */}
+                  <CustomVideoPlayer src={filteredItems[selectedIndex].src} />
+                </div>
+              ) : (
+                <img
+                  src={filteredItems[selectedIndex].src}
+                  alt={filteredItems[selectedIndex].title}
+                  className="max-w-full max-h-[80vh] object-contain shadow-2xl rounded-sm"
+                />
+              )}
             </div>
 
             {/* Details Section */}
             <div className="text-center text-white">
-               <h2 className="text-2xl font-bold mb-1">{filteredItems[selectedIndex].title}</h2>
-               <p className="text-gray-400 flex items-center justify-center gap-2 text-sm">
-                 <Calendar size={14} /> {filteredItems[selectedIndex].date}
-               </p>
+              <h2 className="text-2xl font-bold mb-1">{filteredItems[selectedIndex].title}</h2>
+              <p className="text-gray-400 flex items-center justify-center gap-2 text-sm">
+                <Calendar size={14} /> {filteredItems[selectedIndex].date}
+              </p>
             </div>
           </div>
         </div>

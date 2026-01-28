@@ -1,15 +1,15 @@
 import React from 'react';
 import { Star, CheckCircle } from 'lucide-react';
-import PageHeader from '../components/PageHeader';
-import SectionHeading from '../components/SectionHeading';
-import Card from '../components/Card';
-import { ABOUT_DATA } from '../data';
+import PageHeader from './PageHeader';
+import SectionHeading from './SectionHeading';
+import Card from './Card';
+import { ABOUT_DATA } from './data';
 
 const AboutPage = () => {
   return (
     <div className="animate-fade-in pb-20">
-      <PageHeader 
-        title={ABOUT_DATA.pageTitle} 
+      <PageHeader
+        title={ABOUT_DATA.pageTitle}
         subtitle={ABOUT_DATA.pageSubtitle}
         bgImage={ABOUT_DATA.headerImage}
       />
@@ -18,10 +18,10 @@ const AboutPage = () => {
         <Card className="p-8 md:p-12 mb-12">
           <div className="flex flex-col md:flex-row gap-12 items-center mb-16">
             <div className="w-full md:w-1/2">
-               <div className="rounded-2xl h-64 md:h-80 relative overflow-hidden group shadow-lg">
-                  <div className="absolute inset-0 bg-school-primary/20 group-hover:bg-transparent transition duration-500 z-10"></div>
-                  <img src={ABOUT_DATA.historyImage} className="w-full h-full object-cover transform group-hover:scale-105 transition duration-700" alt="Gedung Sekolah" />
-               </div>
+              <div className="rounded-2xl h-64 md:h-80 relative overflow-hidden group shadow-lg">
+                <div className="absolute inset-0 bg-school-primary/20 group-hover:bg-transparent transition duration-500 z-10"></div>
+                <img src={ABOUT_DATA.historyImage} className="w-full h-full object-cover transform group-hover:scale-105 transition duration-700" alt="Gedung Sekolah" />
+              </div>
             </div>
             <div className="w-full md:w-1/2">
               <SectionHeading title={ABOUT_DATA.historyTitle} color="border-school-accent" />

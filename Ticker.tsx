@@ -1,6 +1,6 @@
 import React from 'react';
 import { Megaphone } from 'lucide-react';
-import { TICKER_MESSAGES } from '../data';
+import { TICKER_MESSAGES } from './data';
 
 const Ticker = () => {
   return (

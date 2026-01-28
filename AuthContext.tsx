@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { User, Role } from '../types';
+import { User, Role } from './types';
 
 interface AuthContextType {
   user: User | null;
@@ -29,7 +29,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       name: username === 'admin' ? 'Administrator' : username === 'guru' ? 'Budi Santoso, S.Pd' : 'Ahmad Siswa',
       role: role
     };
-    
+
     setUser(newUser);
     localStorage.setItem('school_user', JSON.stringify(newUser));
   };

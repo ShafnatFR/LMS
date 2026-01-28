@@ -2,21 +2,21 @@
 import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Page } from './types';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import HomePage from './pages/Home';
-import AboutPage from './pages/About';
-import DirectoryPage from './pages/Directory';
-import FacilitiesPage from './pages/Facilities';
-import GalleryPage from './pages/Gallery';
-import CalendarPage from './pages/Calendar';
-import ArticlePage from './pages/Article';
-import PrestasiPage from './pages/Prestasi';
-import LoginPage from './pages/Login';
-import StudentPortal from './pages/student/StudentPortal';
-import TeacherPortal from './pages/teacher/TeacherPortal';
-import AdminPortal from './pages/admin/AdminPortal';
-import { AuthProvider, useAuth } from './contexts/AuthContext';
+import Navbar from './Navbar';
+import Footer from './Footer';
+import HomePage from './Home';
+import AboutPage from './About';
+import DirectoryPage from './Directory';
+import FacilitiesPage from './Facilities';
+import GalleryPage from './Gallery';
+import CalendarPage from './Calendar';
+import ArticlePage from './Article';
+import PrestasiPage from './Prestasi';
+import LoginPage from './Login';
+import StudentPortal from './StudentPortal';
+import TeacherPortal from './TeacherPortal';
+import AdminPortal from './AdminPortal';
+import { AuthProvider, useAuth } from './AuthContext';
 
 const SchoolWebsite = () => {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -26,7 +26,7 @@ const SchoolWebsite = () => {
   const navigateTo = (page: Page) => {
     setCurrentPage(page);
     if (!page.startsWith('student-') && !page.startsWith('teacher-') && !page.startsWith('admin-')) {
-       window.scrollTo(0, 0);
+      window.scrollTo(0, 0);
     }
   };
 
@@ -41,7 +41,7 @@ const SchoolWebsite = () => {
 
   return (
     <div className={`min-h-screen bg-slate-50 flex flex-col text-gray-800 font-sans ${isDashboardView ? 'h-screen overflow-hidden' : ''}`}>
-      
+
       {!isDashboardView && <Navbar currentPage={currentPage} onNavigate={navigateTo} />}
 
       <main className={isDashboardView ? "h-full" : "flex-grow"}>
@@ -54,21 +54,21 @@ const SchoolWebsite = () => {
         {currentPage === 'prestasi' && <PrestasiPage />}
         {currentPage === 'login' && <LoginPage onNavigate={navigateTo} />}
         {currentPage === 'article' && selectedArticleId && (
-          <ArticlePage 
-            articleId={selectedArticleId} 
-            onBack={() => navigateTo('home')} 
+          <ArticlePage
+            articleId={selectedArticleId}
+            onBack={() => navigateTo('home')}
           />
         )}
-        
+
         {/* DASHBOARD ROUTES */}
         {currentPage === 'student-dashboard' && (
-           <StudentPortal onNavigate={navigateTo} />
+          <StudentPortal onNavigate={navigateTo} />
         )}
         {currentPage === 'teacher-dashboard' && (
-           <TeacherPortal onNavigate={navigateTo} />
+          <TeacherPortal onNavigate={navigateTo} />
         )}
         {currentPage === 'admin-dashboard' && (
-           <AdminPortal onNavigate={navigateTo} />
+          <AdminPortal onNavigate={navigateTo} />
         )}
       </main>
 

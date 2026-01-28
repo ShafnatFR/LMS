@@ -1,7 +1,7 @@
 import React from 'react';
 import { Youtube, Play, Clock } from 'lucide-react';
 import Card from './Card';
-import { VIDEO_DATA } from '../data';
+import { VIDEO_DATA } from './data';
 
 const VideoWidget = () => {
   return (
@@ -12,9 +12,9 @@ const VideoWidget = () => {
         </h3>
       </div>
       <div className="aspect-video bg-gray-100 relative group cursor-pointer overflow-hidden">
-        <img 
-          src={VIDEO_DATA.thumbnail} 
-          alt="Video Thumbnail" 
+        <img
+          src={VIDEO_DATA.thumbnail}
+          alt="Video Thumbnail"
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">

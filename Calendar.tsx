@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Clock, Calendar as CalendarIcon, LayoutList, ChevronLeft, ChevronRight } from 'lucide-react';
-import PageHeader from '../components/PageHeader';
-import Card from '../components/Card';
-import { EventCategory, CalendarEvent } from '../types';
-import { CALENDAR_EVENTS } from '../data';
+import PageHeader from './PageHeader';
+import Card from './Card';
+import { EventCategory, CalendarEvent } from './types';
+import { CALENDAR_EVENTS } from './data';
 
 const CalendarPage = () => {
   const [viewMode, setViewMode] = useState<'list' | 'calendar'>('list');
@@ -15,7 +15,7 @@ const CalendarPage = () => {
   };
 
   const getCategoryStyles = (category: EventCategory) => {
-    switch(category) {
+    switch (category) {
       case 'academic': return { border: 'border-l-blue-500', badge: 'bg-blue-100 text-blue-700', date: 'text-blue-600', dot: 'bg-blue-500' };
       case 'sport': return { border: 'border-l-red-500', badge: 'bg-red-100 text-red-700', date: 'text-red-600', dot: 'bg-red-500' };
       case 'holiday': return { border: 'border-l-green-500', badge: 'bg-green-100 text-green-700', date: 'text-green-600', dot: 'bg-green-500' };
@@ -45,15 +45,15 @@ const CalendarPage = () => {
   const renderCalendarGrid = () => {
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
-    
+
     const firstDayOfMonth = new Date(year, month, 1).getDay(); // 0 = Sunday
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-    
+
     // Adjust for Monday start if needed, currently Sunday start
-    const paddingDays = firstDayOfMonth; 
-    
+    const paddingDays = firstDayOfMonth;
+
     const days = [];
-    
+
     // Padding days
     for (let i = 0; i < paddingDays; i++) {
       days.push(<div key={`pad-${i}`} className="h-24 md:h-32 bg-gray-50/50 border border-gray-100"></div>);
@@ -91,8 +91,8 @@ const CalendarPage = () => {
 
   return (
     <div className="animate-fade-in pb-20">
-      <PageHeader 
-        title="Kalender Akademik" 
+      <PageHeader
+        title="Kalender Akademik"
         subtitle="Jadwal kegiatan akademik dan non-akademik SMA BPS&K 1 Jakarta Tahun Ajaran 2024/2025."
       />
 
@@ -102,22 +102,20 @@ const CalendarPage = () => {
           <div className="flex bg-white p-1 rounded-lg shadow-sm border border-gray-100">
             <button
               onClick={() => setViewMode('list')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all ${
-                viewMode === 'list' 
-                  ? 'bg-school-primary text-white shadow-sm' 
+              className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all ${viewMode === 'list'
+                  ? 'bg-school-primary text-white shadow-sm'
                   : 'text-gray-500 hover:text-school-primary hover:bg-gray-50'
-              }`}
+                }`}
             >
               <LayoutList size={18} />
               <span>List View</span>
             </button>
             <button
               onClick={() => setViewMode('calendar')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all ${
-                viewMode === 'calendar' 
-                  ? 'bg-school-primary text-white shadow-sm' 
+              className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all ${viewMode === 'calendar'
+                  ? 'bg-school-primary text-white shadow-sm'
                   : 'text-gray-500 hover:text-school-primary hover:bg-gray-50'
-              }`}
+                }`}
             >
               <CalendarIcon size={18} />
               <span>Calendar View</span>
@@ -125,17 +123,17 @@ const CalendarPage = () => {
           </div>
 
           {viewMode === 'calendar' && (
-             <div className="flex items-center gap-4 bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100">
-                <button onClick={prevMonth} className="p-1 hover:bg-gray-100 rounded-full text-gray-600 transition">
-                  <ChevronLeft size={20} />
-                </button>
-                <span className="font-bold text-gray-800 text-lg min-w-[140px] text-center">
-                  {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
-                </span>
-                <button onClick={nextMonth} className="p-1 hover:bg-gray-100 rounded-full text-gray-600 transition">
-                  <ChevronRight size={20} />
-                </button>
-             </div>
+            <div className="flex items-center gap-4 bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100">
+              <button onClick={prevMonth} className="p-1 hover:bg-gray-100 rounded-full text-gray-600 transition">
+                <ChevronLeft size={20} />
+              </button>
+              <span className="font-bold text-gray-800 text-lg min-w-[140px] text-center">
+                {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
+              </span>
+              <button onClick={nextMonth} className="p-1 hover:bg-gray-100 rounded-full text-gray-600 transition">
+                <ChevronRight size={20} />
+              </button>
+            </div>
           )}
         </div>
 
@@ -150,7 +148,7 @@ const CalendarPage = () => {
                     <span className={`text-3xl font-bold ${styles.date}`}>{event.date}</span>
                     <span className="text-gray-500 font-bold uppercase tracking-wider text-sm mt-1">{event.month}</span>
                   </div>
-                  
+
                   <div className={`flex-1 p-6 border-l-4 ${styles.border} bg-white`}>
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2 gap-2">
                       <h3 className="text-lg font-bold text-gray-800">{event.title}</h3>
@@ -158,12 +156,12 @@ const CalendarPage = () => {
                         {event.category === 'holiday' ? 'Nasional' : event.category}
                       </span>
                     </div>
-                    
+
                     <div className="flex items-center text-gray-500 text-sm mb-3 font-medium">
                       <Clock size={16} className="mr-2" />
                       {event.time}
                     </div>
-                    
+
                     <p className="text-gray-600 text-sm leading-relaxed">
                       {event.description}
                     </p>
@@ -171,7 +169,7 @@ const CalendarPage = () => {
                 </Card>
               );
             })}
-             <div className="mt-12 text-center">
+            <div className="mt-12 text-center">
               <button className="text-school-primary font-bold hover:text-blue-800 flex items-center justify-center mx-auto gap-2 border border-school-primary/30 px-6 py-3 rounded-full hover:bg-blue-50 transition">
                 <CalendarIcon size={18} />
                 Unduh Kalender Lengkap (PDF)
@@ -180,20 +178,20 @@ const CalendarPage = () => {
           </div>
         ) : (
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-             {/* Calendar Header Days */}
-             <div className="grid grid-cols-7 bg-gray-50 border-b border-gray-200">
-                {['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'].map((day, i) => (
-                  <div key={i} className="py-3 text-center text-xs font-bold text-gray-500 uppercase tracking-wider">
-                    <span className="hidden md:inline">{day}</span>
-                    <span className="md:hidden">{day.substring(0, 3)}</span>
-                  </div>
-                ))}
-             </div>
-             
-             {/* Calendar Body */}
-             <div className="grid grid-cols-7 border-l border-t border-gray-100">
-                {renderCalendarGrid()}
-             </div>
+            {/* Calendar Header Days */}
+            <div className="grid grid-cols-7 bg-gray-50 border-b border-gray-200">
+              {['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'].map((day, i) => (
+                <div key={i} className="py-3 text-center text-xs font-bold text-gray-500 uppercase tracking-wider">
+                  <span className="hidden md:inline">{day}</span>
+                  <span className="md:hidden">{day.substring(0, 3)}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Calendar Body */}
+            <div className="grid grid-cols-7 border-l border-t border-gray-100">
+              {renderCalendarGrid()}
+            </div>
           </div>
         )}
       </div>
